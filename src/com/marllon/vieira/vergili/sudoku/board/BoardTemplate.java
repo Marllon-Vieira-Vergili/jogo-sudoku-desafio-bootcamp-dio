@@ -1,7 +1,10 @@
 package com.marllon.vieira.vergili.sudoku.board;
 
 
+import com.marllon.vieira.vergili.sudoku.services.LogicasSudoku;
 import com.marllon.vieira.vergili.sudoku.services.Matrix;
+
+import java.util.Random;
 
 /***
  * Classe responsável por criar os templates do Tabuleiro.
@@ -22,7 +25,7 @@ public class BoardTemplate {
     //Construtor vazio - Sem parâmetros
     public BoardTemplate(){}
 
-
+    Random numerosAleatorios = new Random();
 
     //Instanciando as Matrizes
     Matrix<Integer> tabuleiroPrincipal = new Matrix<>(9,9);
@@ -40,7 +43,7 @@ public class BoardTemplate {
 
 
     public void inserirValorCampoArray(int linha, int coluna, Integer valor){
-        tabuleiroPrincipal.adicionarELemento(linha, coluna, valor);
+        tabuleiroPrincipal.adicionarElemento(linha, coluna, valor);
     }
 
 
@@ -55,7 +58,37 @@ public class BoardTemplate {
         for(int linhaArr = 0; linhaArr < 3; linhaArr++){
             for(int colArr = 0; colArr < 3; colArr++){
                 Integer valor = tabuleiroPrincipal.obterElemento(inicioLinha + linhaArr, inicioColuna + colArr);
-                tabuleiroRegional.adicionarELemento(linhaArr,colArr,valor);
+                tabuleiroRegional.adicionarElemento(linhaArr,colArr,valor);
+            }
+        }
+    }
+
+
+    /**
+     * Este é o método principal para gerar o tabuleiro do Sudoku no jogo.
+     *Ele ja irá gerar os valores aleatórios, conforme existe no sudoku
+     * na hora de começar o game
+     *
+     * */
+    public void iniciarTabuleiro(LogicasSudoku regrasSudoku, int qtdPistasIniciais){
+
+        //Gerar todos os campos do array com valores zerados
+        tabuleiroPrincipal.preencherMatrizToda(0);
+
+        //variável campos preenchidos começado com zero
+        int camposPreenchidos = 0;
+
+        //Enquanto o valor dos campos for menor que as pistas iniciais que passado no parâmetro..
+        while (camposPreenchidos < qtdPistasIniciais){
+            int linha = numerosAleatorios.nextInt(9);
+            int coluna = numerosAleatorios.nextInt(9);
+            int valor = numerosAleatorios.nextInt(10); //Valores até 10
+
+            //chamando o método "podecolocarnumero" para verificar se não terá conflito
+            //de gerar o valor aleatório num campo que já tme valor
+            if (regrasSudoku.podeColocarNumero(linha,coluna,valor,tabuleiroPrincipal)){
+                tabuleiroPrincipal.adicionarElemento(linha,coluna,valor);
+                camposPreenchidos++;
             }
         }
     }

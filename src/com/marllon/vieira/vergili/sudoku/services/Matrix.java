@@ -38,7 +38,7 @@ public class Matrix <T>{
         this.matriz = new Object[linhas][colunas];
     }
 
-    public void adicionarELemento(int linha, int coluna, T elemento){
+    public void adicionarElemento(int linha, int coluna, T elemento){
 
         validarIndices(linha, coluna);
         this.matriz[linha][coluna] = elemento;
@@ -120,7 +120,7 @@ public class Matrix <T>{
                     resultado += matriz[i][j].toString();
                 }
 
-                // Adiciona uma tabulação entre os números, exceto no final da linha
+                // Adicionar uma tabulação entre os números, exceto no final da linha
                 if (j < matriz[i].length - 1) {
                     resultado += "\t";
                 }

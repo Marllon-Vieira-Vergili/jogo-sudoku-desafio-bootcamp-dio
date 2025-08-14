@@ -108,13 +108,14 @@ public class LogicasSudoku {
 
         //Chamando o método acima, que faz todas as condições para verificação
         if(!podeColocarNumero(linha, coluna, valor, tabuleiro)){
-            throw new IllegalArgumentException(
-                    "Erro: Valor " + valor + " não pode ser colocado em (" + linha + "," + coluna + ")"
+            throw new JaTemValorNoCampoInformadoExc(
+                    "Erro: Valor " + valor + " não pode ser colocado em (" + linha + "," + coluna + ") , pois já tem " +
+                            " um valor lá"
             );
         }
 
         //Se tudo estiver correto e passar, adicionar elemento no array
-        tabuleiro.adicionarELemento(linha, coluna, valor);
+        tabuleiro.adicionarElemento(linha, coluna, valor);
     }
 
 }
