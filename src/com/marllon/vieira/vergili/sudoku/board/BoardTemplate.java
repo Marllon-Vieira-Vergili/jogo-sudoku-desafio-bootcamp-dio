@@ -20,7 +20,7 @@ public class BoardTemplate {
     private final int TAMANHOFIXO_ARRAY = 9;
 
     //Construtor vazio - Sem parâmetros
-    private BoardTemplate(){}
+    public BoardTemplate(){}
 
 
 
@@ -28,33 +28,37 @@ public class BoardTemplate {
     Matrix<Integer> tabuleiroPrincipal = new Matrix<>(9,9);
     Matrix<Integer> tabuleiroRegional = new Matrix<>(3,3);
 
+    //Métodos Getters... Não tem setters pois não faz sentido
+    public Matrix<Integer> getTabuleiroPrincipal() {
+        return tabuleiroPrincipal;
+    }
 
-    /*
-    Código Comentado... vou utilizar minha classe Matrix para instância, aproveitando
-    ela de quando fiz o curso de estrutura de dados
-
-    Tabuleiro, constante (não se alterará)
-    * com 9x9. Esse é o tabuleiro principal
-
-    public final static int [][] tabuleiroPrincipal = {
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0}
-    };
+    public Matrix<Integer> getTabuleiroRegional() {
+        return tabuleiroRegional;
+    }
 
 
-    public static final int [][] tabuleiroRegional ={
-            {0,0,0},
-            {0,0,0},
-            {0,0,0}
 
-    };
-    /*
-     */
+    public void inserirValorCampoArray(int linha, int coluna, Integer valor){
+        tabuleiroPrincipal.adicionarELemento(linha, coluna, valor);
+    }
+
+
+
+    //Método para selecionar um bloco dentro de uma região do tabuleiro, dentro dos blocos 3x3
+
+    public void preencherBlocoRegiao(int linha, int coluna){
+        //Encontrar o canto superior esquerdo da matriz 3x3
+        int inicioLinha = (linha / 3) * 3;
+        int inicioColuna = (coluna / 3) * 3;
+
+        for(int linhaArr = 0; linhaArr < 3; linhaArr++){
+            for(int colArr = 0; colArr < 3; colArr++){
+                Integer valor = tabuleiroPrincipal.obterElemento(inicioLinha + linhaArr, inicioColuna + colArr);
+                tabuleiroRegional.adicionarELemento(linhaArr,colArr,valor);
+            }
+        }
+    }
+
+
 }

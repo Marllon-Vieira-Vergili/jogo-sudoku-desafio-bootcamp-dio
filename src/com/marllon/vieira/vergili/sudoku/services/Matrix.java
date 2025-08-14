@@ -98,33 +98,37 @@ public class Matrix <T>{
         }
     }
 
+    /**
+     * Ajuste na classe toString para
+     * renderizar o tabuleiro no console, tudo com
+     * valores 0 "padrao"
+     *
+     * */
     @Override
     public String toString() {
 
+        //variável receberá uma string vazia
+        String resultado = "";
 
-        if (limparMatriz() == true){
-            return "[][]";
-        }
-        StringBuilder builder = new StringBuilder("[");
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
 
-        for (int i = 0; i < matriz.length; i++){
-            for (int j = 0; j < matriz[i].length; j++){ //retorna o numero total de colunas na linha i
-                builder.append(matriz[i][j] != null ? matriz[i][j].toString() : "0"); /*
-               Aqui, o código verifica se o elemento na posição [i][j] da matriz é null.
-Se não for null: Chama o método toString() do objeto armazenado na posição [i][j] e o adiciona à StringBuilder.
-Se for null: Adiciona a palavra "Nulo" à StringBuilder. */
+                // Se a célula estiver nula, mostra 0
+                if (matriz[i][j] == null) {
+                    resultado += "0";
+                } else { //Senão... a variável resultado vai mostrar o valor em forma de String
+                    resultado += matriz[i][j].toString();
+                }
 
-                if (j< matriz[i].length - 1){
-                    builder.append("\t"); //separador de tabulação entre colunas
+                // Adiciona uma tabulação entre os números, exceto no final da linha
+                if (j < matriz[i].length - 1) {
+                    resultado += "\t";
                 }
             }
-            builder.append("\n"); //quebra de linha entre as linhas da matriz
-
+            // Quebra de linha após cada linha da matriz
+            resultado += "\n";
         }
 
-
-        builder.append("]");
-        return builder.toString();
-    }
-
+        return resultado;
+}
 }
