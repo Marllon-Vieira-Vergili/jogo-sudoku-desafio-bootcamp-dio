@@ -31,3 +31,15 @@ um dos 1 a 9 (Cada coluna não pode repetir o mesmo número, pelo que eu entendi
 
 Com base no que eu li na introdução do wikipedia sobre sudoku, ja posso imaginar
 como eu poderia montar esse algoritmo.
+
+
+COMO TESTAR
+
+1- Faça o clone deste repositório do Github. Abra seu Terminal Bash do git, em qualquer lugar que queira salvar
+a pasta do projeto, digite "git clone https...(link deste projeto)"
+
+2 - Escolha uma IDE para testar (Recomendo usar o Intellij)
+
+3 - Verifique se sua versão da JDK é a mesma desse projeto, ou seja, JDK 21 
+
+4 - Execute o programa pela classe Principal "Main"

@@ -34,14 +34,18 @@ public class Main {
             System.out.println("=================");
 
 
-            System.out.println("Digite em qual linha voce quer adicionar o valor: ");
-            int linha = scan.nextInt();
+            System.out.println("Digite em qual linha voce quer adicionar o valor(1-9): ");
+            int linha = scan.nextInt() - 1;
 
 
-            System.out.println("Digite em qual coluna voce quer adicionar o valor: ");
-            int coluna = scan.nextInt();
+            System.out.println("Digite em qual coluna voce quer adicionar o valor(1-9): ");
+            int coluna = scan.nextInt() -1;
 
-
+            //Verificação se usuário digitou linha e coluna válido
+            if (linha < 0 || linha > 8 || coluna < 0 || coluna > 8) {
+                System.out.println("Coordenadas inválidas! Use valores de 1 a 9.");
+                continue; // Volta para o início do loop
+            }
 
             System.out.println("Digite o valor que você quer adicionar agora: ");
             int valor = scan.nextInt();

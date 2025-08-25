@@ -13,11 +13,9 @@ public class LogicasSudoku {
 
 
     public boolean verificarCampoOcupado(int linha, int coluna, Matrix<Integer> tabuleiro){
+
         Integer valor = tabuleiro.obterElemento(linha, coluna);
-        if (valor != null && valor != 0){
-            return true;
-        }
-        return false;
+        return valor != null && valor != 0;
     }
     
     public boolean verificarLinha(int linha, int valor, Matrix<Integer> tabuleiro){

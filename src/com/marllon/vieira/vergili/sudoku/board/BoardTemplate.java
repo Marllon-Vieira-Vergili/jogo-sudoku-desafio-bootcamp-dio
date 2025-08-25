@@ -72,17 +72,22 @@ public class BoardTemplate {
      * */
     public void iniciarTabuleiro(LogicasSudoku regrasSudoku, int qtdPistasIniciais){
 
-        //Gerar todos os campos do array com valores zerados
-        tabuleiroPrincipal.preencherMatrizToda(0);
+        //Correção de BUG - Inicializar todos os campos com 0
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                tabuleiroPrincipal.adicionarElemento(i, j, 0);
+            }
+        }
 
-        //variável campos preenchidos começado com zero
         int camposPreenchidos = 0;
+        int tentativas = 0;
+        int maxTentativas = qtdPistasIniciais * 20;
 
         //Enquanto o valor dos campos for menor que as pistas iniciais que passado no parâmetro..
-        while (camposPreenchidos < qtdPistasIniciais){
+        while (camposPreenchidos < qtdPistasIniciais && tentativas < maxTentativas){
             int linha = numerosAleatorios.nextInt(9);
             int coluna = numerosAleatorios.nextInt(9);
-            int valor = numerosAleatorios.nextInt(10); //Valores até 10
+            int valor = numerosAleatorios.nextInt(9) + 1; //Valores até 10
 
             //chamando o método "podecolocarnumero" para verificar se não terá conflito
             //de gerar o valor aleatório num campo que já tme valor
@@ -90,6 +95,7 @@ public class BoardTemplate {
                 tabuleiroPrincipal.adicionarElemento(linha,coluna,valor);
                 camposPreenchidos++;
             }
+            tentativas++;
         }
     }
 
